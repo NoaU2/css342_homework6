@@ -11,7 +11,9 @@
 // SIZE == 15 took about 17 sec
 TEST(problem_1, possible_parentheses) {
     const size_t SIZE = 12;
+    //runs for n 0 through 12
     for (size_t num_of_pair = 0; num_of_pair < SIZE; num_of_pair++) {
+        //creates a result vector and a result set
         std::vector<std::string> results;
         std::set<std::string> result_set;
 
@@ -23,7 +25,9 @@ TEST(problem_1, possible_parentheses) {
 
         // verify result correctness & uniqueness
         for (const std::string &result: results) {
+            //verifies that the parenthesis string is valid
             ASSERT_TRUE(is_valid(result));
+            //verifies that it is unique
             ASSERT_TRUE(result_set.find(result) == result_set.end());
             result_set.insert(result);
         }

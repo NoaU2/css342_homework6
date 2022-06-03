@@ -4,9 +4,22 @@
 
 
 TEST(problem_1, your_test) {
-    /*
-     * TODO: homework
-     * Add test for possible parentheses size up to 3
-     */
-    ASSERT_TRUE(false); // remove this when homework is done
+
+    //created set of sets for the expected strings
+    std::set<std::set<std::string>> expected = {{{"()()()"} , {"(())()"} , {"()(())"} , {"((()))"} , {"(()())"}},  {{"()()"}, {"(())"}},{{"()"}}};
+    int index = 3;
+    std::vector<std::string> actual;
+
+    for(const std::set<std::string> &expect: expected){
+        CatalanNumberSolver::possible_parenthesis(index, actual);
+        ASSERT_EQ(actual.size(), expect.size());
+        for(const std::string &parenthesisPermutation: actual){
+            //check if the parenthesis are valid + checks if the string is found in the expected list
+            ASSERT_TRUE(is_valid(parenthesisPermutation));
+            ASSERT_TRUE(expect.count(parenthesisPermutation) == 1);
+        }
+        index--;
+        actual.clear();
+    }
+
 }
