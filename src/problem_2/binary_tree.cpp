@@ -8,9 +8,24 @@
 template<class T>
 std::vector<T> *BinaryTree<T>::dfs_in_order() {
     auto *result = new std::vector<T>();
-    /*
-     * TODO: homework
-     */
+
+    TreeNode<T> *current = get_root();
+    std::stack<TreeNode<T> *> fakeRecursion;
+
+    while(current != nullptr || fakeRecursion.empty() == false){
+
+        while(current != nullptr){
+            fakeRecursion.push(current);
+            current = current->left;
+        }
+
+        current = fakeRecursion.top();
+        result->push_back(current->val);
+        fakeRecursion.pop();
+
+        current = current->right;
+    }
+
     return result;
 }
 
@@ -21,27 +36,64 @@ std::vector<T> *BinaryTree<T>::dfs_in_order() {
 template<class T>
 std::vector<T> *BinaryTree<T>::dfs_pre_order() {
     auto *result = new std::vector<T>();
-    /*
-     * TODO: homework
-     */
+
+    TreeNode<T> *current = get_root();
+    std::stack<TreeNode<T> *> fakeRecursion;
+    if(current != nullptr) {
+        fakeRecursion.push(current);
+    }
+
+    while(fakeRecursion.empty() == false){
+        current = fakeRecursion.top();
+        result->push_back(current->val);
+        fakeRecursion.pop();
+
+        if(current->right != nullptr) {
+            fakeRecursion.push(current->right);
+        }
+        if(current->left != nullptr) {
+            fakeRecursion.push(current->left);
+        }
+    }
+
     return result;
 }
 
 template<class T>
 TreeNode<T> *BinaryTree<T>::lca(TreeNode<T> *node_start, TreeNode<T> *node_1, TreeNode<T> *node_2) {
-    /*
-     * TODO: homework
-     * This helper function is OPTIONAL.
-     * Use this or change it to your like.
-     * If you do, remember to change the same in the .h file.
-     */
+
+    if(node_start == nullptr){
+        return nullptr;
+    }
+
+    if(node_start == node_1 || node_start == node_2){
+        return node_start;
+    }
+
+    TreeNode<T> *leftlca = lca(node_start->left, node_1, node_2);
+    TreeNode<T> *rightlca = lca(node_start->right, node_1, node_2);
+
+    if(leftlca != nullptr && rightlca != nullptr){
+        return node_start;
+    }
+
+    if(leftlca == nullptr){
+        return rightlca;
+    }
+
+    if(rightlca == nullptr){
+        return leftlca;
+    }
+
+    else{
+        return nullptr;
+    }
 }
 
 template<class T>
 TreeNode<T> *BinaryTree<T>::lca(TreeNode<T> *node_1, TreeNode<T> *node_2) {
-    /*
-     * TODO: homework
-     */
+
+    return lca(root, node_1, node_2);
 }
 
 template<class T>
