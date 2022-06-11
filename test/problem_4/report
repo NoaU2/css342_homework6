@@ -1,1 +1,31 @@
 TODO: add your report here
+1) How does B-Tree work? (focus on searching in an B-Tree)
+The B-tree stores are many rows of data in each block as is can, then it creates an index. The index contains two things: a key and a pointer.
+When the key of the index is called, the pointer is retrieved and it points to the memory address of the desired data.
+Because both the index and the B-tree take up memory, it takes around 5 blocks to access the data. If the index gets too large,
+a sparse index will be made that contains pointers to different segments of the actual index. The B-tree works on multilevel indexes
+to improve search time.
+
+2) How does B-Tree compares to a binary search tree?
+Unlike a Binary Tree, a B-Tree can have any amount of data inside of one Node. That data includes a value, a pointer to another node,
+and a pointer to the rest of the data. A B-tree is also built bottom up unlike a Binary tree and has a lot of rules to ensure maximum efficiency.
+
+3) Why could B-Tree be helpful for data indexing?
+B-trees use multilevel indexing which makes indexing much more efficient with a large amount of data. Essentially, the leafs of
+the binary tree are the base level indexes, and every parent node is a higher level index that has a points to the base level indexes.
+
+4) What's the search complexity of B-Tree? And how does it affect search efficiency (time) comparing to hashtable?
+The search complexity of a B-tree is O(logN), while the worst case search complexity of a HashTable is O(N). However, hashtables
+have a best case search complexity of O(1), but this only applies under the condition that the amount of bucket is large, the data
+is small, and the hashing algorithm is efficient. So, B-Trees are far more effective at organizing large amounts of data than hashtables.
+
+5) Why does B-Tree provide advantage over hashtable for range query.
+When hash tables have collisions, they create single linked lists that can cause the data to no longer be quickly accessible.
+However, B-trees have a maximum amount of data in each node and use multilevel indexing to have a consistent search complexity of
+O(logN). This makes the data more easily accessible.
+
+Single Query: During the lower hundreds (less than 500) the three times where relatively similar, but as the numbers grew,
+the no index vector method vastly fell behind the other two in speed. Both the hash table and the b-tree had very similar times.
+
+Range Query: During the Range Query, the hashtable is least efficient of the three. The no index search is relatively efficient
+until the numbers get higher. B-tree is the most efficient among the three at higher numbers

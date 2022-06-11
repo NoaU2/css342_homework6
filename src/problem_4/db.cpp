@@ -87,11 +87,13 @@ bool GasWorksDB::find_by_name(const std::string &name, std::vector<Record> &foun
         }
         return true;
     }
+    for (auto &record: table) {
+        if (record.get_name() == name) {
+            found_records.push_back(record);
+        }
+    }
+    return !found_records.empty();
 
-    /*
-     * TODO: homework
-     */
-    return 0;   // remove this when homework is done
 }
 
 /*

@@ -6,7 +6,7 @@ TEST(problem_4, perf_range_query) {
     const int HOBBY_TYPE_COUNT = 50;
     const int AGE_MAX = 300;
 
-    const int MAX_TABLE_SIZE = 1000;
+    const int MAX_TABLE_SIZE = 10000;
     const int STEP_TABLE_SIZE = 1000;
 
     for (unsigned table_size = 0; table_size <= MAX_TABLE_SIZE; table_size += STEP_TABLE_SIZE) {
