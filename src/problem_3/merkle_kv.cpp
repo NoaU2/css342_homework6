@@ -77,9 +77,10 @@ std::set<std::string> MerkleKV::compare(const MerkleKV &other_kv) {
 
 // Refernce https://en.wikipedia.org/wiki/Heap_(data_structure) for the calculation of left() and right
 int MerkleKV::left(int node_idx) {
-    /*
-     * TODO: homework
-     */
+
+    int num_tree_nodes = meta_tree.size() - 1;
+    return num_tree_nodes - ((num_tree_nodes - node_idx) * 2 + 2);
+
 }
 
 int MerkleKV::right(int node_idx) {

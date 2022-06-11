@@ -1,4 +1,4 @@
-TODO: add your report here
+
 1) How does B-Tree work? (focus on searching in an B-Tree)
 The B-tree stores are many rows of data in each block as is can, then it creates an index. The index contains two things: a key and a pointer.
 When the key of the index is called, the pointer is retrieved and it points to the memory address of the desired data.
